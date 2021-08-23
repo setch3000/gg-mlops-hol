@@ -18,9 +18,9 @@ Please click [CloudFormation Link](https://console.aws.amazon.com/cloudformation
 
 Please copy the command from ***CreateRoleRliasCommand*** in ***Outputs*** tab in the CloudFormation stack you've made.
 
-<!-- ![lab1_1_a.jpg](lab1_1_a.jpg) -->
+![lab1_1_a.jpg](lab1_1_a.jpg)
 
-{{< img "lab1_1_a.jpg" "A Chapter" >}}
+<!-- {{< img "lab1_1_a.jpg" "A Chapter" >}} -->
 
 In a terminal in Cloud9, please paste command to make an AWS IoT role alias that points to the token exchange role.
 The command looks simliar to the below example.
