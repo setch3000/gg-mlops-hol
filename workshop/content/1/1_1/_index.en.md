@@ -16,24 +16,25 @@ Please click [CloudFormation Link](https://console.aws.amazon.com/cloudformation
 
 ## Create an AWS IoT role alias that points to the token exchange role
 
-In a terminal in Cloud9, please use below command to make a empty file for creating a policy document.
+Please copy the command from ***CreateRoleRliasCommand*** in ***Outputs*** tab in the CloudFormation stack you've made.
 
+<!-- ![lab1_1_a.jpg](lab1_1_a.jpg) -->
 
+{{< img "lab1_1_a.jpg" "A Chapter" >}}
 
-aws cloudformation describe-stack-resource \
-    --stack-name test5 \
-    --logical-resource-id MyFunction
+In a terminal in Cloud9, please paste command to make an AWS IoT role alias that points to the token exchange role.
+The command looks simliar to the below example.
 
 ``` shell
-aws iot create-role-alias --role-alias GreengrassCoreTokenExchangeRoleAlias --role-arn arn:aws:iam::576184218696:role/GGv2ML-IoTFeetProvGGRole-ZP6AWDDNTRVI
+aws iot create-role-alias --role-alias GGV2WSTokenExchangeRoleAlias --role-arnarn:aws:iam::123456789012:role/GGv2Workshop-GGV2WSTokenExchangeRole-1UGDXWM2VHZZE
 ```
 
 The response looks similar to the following example, if the request succeeds.
 
 ```json
 {
-    "roleAlias": "GreengrassCoreTokenExchangeRoleAlias",
-    "roleAliasArn": "arn:aws:iot:us-east-1:576184218696:rolealias/GreengrassCoreTokenExchangeRoleAlias"
+    "roleAlias": "GGV2WSTokenExchangeRoleAlias",
+    "roleAliasArn": "arn:aws:iot:us-east-1:123456789012:rolealias/GGV2WSTokenExchangeRoleAlias"
 }
 ```
 
@@ -41,7 +42,6 @@ The response looks similar to the following example, if the request succeeds.
 After copy and paste above JSON into the file, please don't forget to save the file.
 
 
-S3_BUCKET
 
 ``` json
 {
