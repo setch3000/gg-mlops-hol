@@ -1,5 +1,5 @@
 +++
-title = "Basics"
+title = "Greengraas V2"
 chapter = true
 weight = 10
 pre = "<b>1. </b>"

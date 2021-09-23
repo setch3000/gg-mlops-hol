@@ -1,1 +1,41 @@
+{
+    "Parameters" : {
+        "ThingName" : {
+            "Type" : "String"
+        },
+        "SerialNumber" : {
+            "Type" : "String"
+        },
+        "Location" : {
+            "Type" : "String",
+            "Default" : "WA"
+        },
+        "AWS::IoT::Certificate::Id" : {
+            "Type" : "String"
+        }
+    },
+    "Resources" : {
+        "thing" : {
+            "Type" : "AWS::IoT::Thing",
+            "Properties" : {
+                "AttributePayload" : { "version" : "v1", "serialNumber" :  {"Ref" : "SerialNumber"}}, 
                 "ThingTypeName" :  "lightBulb-versionA",
+                "ThingGroups" : ["v1-lightbulbs", {"Ref" : "Location"}],
+                "ThingName": {"Ref" : "ThingName"}
+            }
+        },
+        "certificate" : {
+            "Type" : "AWS::IoT::Certificate",
+            "Properties" : {
+                "CertificateId": {"Ref":"AWS::IoT::Certificate::Id"},
+                "Status" : "ACTIVE"
+            }
+        },
+        "policy" : {
+            "Type" : "AWS::IoT::Policy",
+            "Properties" : {
+                "PolicyDocument" : "{ \"Version\": \"2012-10-17\", \"Statement\": [{ \"Effect\": \"Allow\", \"Action\":[\"iot:*\"], \"Resource\": [\"*\"] }] }"
+            }
+        }
+    }
+}
