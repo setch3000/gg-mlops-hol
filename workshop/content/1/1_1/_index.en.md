@@ -18,7 +18,7 @@ Please click [CloudFormation Link](https://console.aws.amazon.com/cloudformation
 
 Please copy the command from ***CreateRoleRliasCommand*** in ***Outputs*** tab in the CloudFormation stack you've made.
 
-![lab1_1_a.jpg](lab1_1_a.jpg)
+![lab1_1_a.jpg](/images/1/lab1_1_a.jpg)
 
 <!-- {{< img "lab1_1_a.jpg" "A Chapter" >}} -->
 
