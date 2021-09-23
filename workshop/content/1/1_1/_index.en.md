@@ -14,10 +14,10 @@ These resources enable devices to register themselves with AWS IoT and operate a
 
 Please click [CloudFormation Link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=GGv2Workshop&templateURL=https://sehyul.s3.ap-northeast-2.amazonaws.com/gg-workshop/cfn-gg-mlops.json) to create a IAM Role with policy document that the token exchange role requires.
 
-![1.jpg](/images/1/1.jpg)
-![2.jpg](/images/1/2.jpg)
-![3.jpg](/images/1/3.jpg)
-![4.jpg](/images/1/4.jpg)
+![1.png](/images/1/1.png)
+![2.png](/images/1/2.png)
+![3.png](/images/1/3.png)
+![4.png](/images/1/4.png)
 
 
 ## Create an AWS IoT role alias that points to the token exchange role
