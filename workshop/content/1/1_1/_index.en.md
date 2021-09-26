@@ -26,7 +26,7 @@ In 1~2 minutes, you can find 'Arn of token exchange IAM role', 'create-role-alia
 
 To make an AWS IoT role alias that points to the token exchange role, please copy the command from ***CreateRoleRliasCommand*** in ***Outputs*** tab.
 
-![5.jpg](/images/1/5.jpg)
+![5.jpg](/images/1/5.png)
 
 In a terminal in Cloud9, please paste command to make an AWS IoT role alias that points to the token exchange role.
 The command looks simliar to the below example.
