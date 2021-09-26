@@ -1,7 +1,7 @@
 +++
 title = "Content"
 chapter = true
-weight = 20
+weight = 30
 pre = "<b>2. </b>"
 +++
 Find out how to create and organize your content quickly and intuitively.
