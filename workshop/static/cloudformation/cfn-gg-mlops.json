@@ -100,8 +100,8 @@
         "Value" : { "Fn::GetAtt" : ["GGV2WSTokenExchangeRole", "Arn"] }
       },
       "GGV2WSTokenExchangeAccess" : {
-        "Description" : "Name of the IoT policy for AWS IoT fleet provisioning for GGv2",
-        "Value" : { "Ref": "GGV2WSTokenExchangeAccess" }
+        "Description" : "Name of the IAM policy for AWS IoT fleet provisioning for GGv2",
+        "Value" : { "Fn::GetAtt" : ["GGV2WSTokenExchangeAccess", "Arn"] }
       },
       "CreateRoleRliasCommand" : {
         "Description" : "create-role-alias command",
