@@ -49,30 +49,6 @@
             }
           },
 
-          "GGV2WSIoTThingPolicy": {
-            "Type": "AWS::IoT::Policy",
-            "Properties": {
-               "PolicyDocument": {
-                "Version": "2012-10-17",
-                "Statement": [
-                  {
-                    "Effect": "Allow",
-                    "Action": [
-                      "iot:Publish",
-                      "iot:Subscribe",
-                      "iot:Receive",
-                      "iot:Connect",
-                      "greengrass:*"
-                    ],
-                    "Resource": [
-                      "*"
-                    ]
-                  }
-                ]
-              }
-            }
-         },
-
          "GGV2WSFleetProvisioningRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -101,11 +77,7 @@
       },
       "CreateRoleRliasCommand" : {
         "Description" : "create-role-alias command",
-        "Value" : { "Fn::Join" : ["", ["aws iot create-role-alias --role-alias GGV2WSTokenExchangeRoleAlias --role-arn", { "Fn::GetAtt" : ["GGV2WSTokenExchangeRole", "Arn"]}]] }
-      },
-      "GGV2WSIoTThingPolicy" : {
-        "Description" : "Name of the IoT policy for AWS IoT fleet provisioning",
-        "Value" : { "Ref": "GGV2WSIoTThingPolicy" }
+        "Value" : { "Fn::Join" : ["", ["aws iot create-role-alias --role-alias GGV2WSTokenExchangeRoleAlias --role-arn ", { "Fn::GetAtt" : ["GGV2WSTokenExchangeRole", "Arn"]}]] }
       },
       "GGV2WSFleetProvisioningRole" : {
         "Description" : "Name of the IAM Role for AWS IoT fleet provisioning",
