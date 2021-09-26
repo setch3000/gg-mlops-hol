@@ -96,7 +96,7 @@
   
     "Outputs" : {
       "GGV2WSTokenExchangeRole" : {
-        "Description" : "Arn of the IAM Role for AWS IoT fleet provisioning for GGv2",
+        "Description" : "Arn of the token exchange IAM role",
         "Value" : { "Fn::GetAtt" : ["GGV2WSTokenExchangeRole", "Arn"] }
       },
       "CreateRoleRliasCommand" : {
