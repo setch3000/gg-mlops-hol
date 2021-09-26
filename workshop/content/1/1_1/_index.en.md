@@ -22,7 +22,9 @@ Please click [CloudFormation Link](https://console.aws.amazon.com/cloudformation
 
 ## Create an AWS IoT role alias that points to the token exchange role
 
-Please copy the command from ***CreateRoleRliasCommand*** in ***Outputs*** tab in the CloudFormation stack you've made.
+In 1~2 minutes, you can find 'Arn of token exchange IAM role', 'create-role-alias command', 'Name of the IAM Role for AWS IoT fleet provisioning'	and 'Name of the IoT policy for AWS IoT fleet provisioning' in ***Outputs*** tab in the CloudFormation stack you've made.
+
+To make an AWS IoT role alias that points to the token exchange role, please copy the command from ***CreateRoleRliasCommand*** in ***Outputs*** tab.
 
 ![5.jpg](/images/1/5.jpg)
 
@@ -42,9 +44,16 @@ The response looks similar to the following example, if the request succeeds.
 }
 ```
 
+## Create an AWS IoT policy for your Greengrass devices
 
-After copy and paste above JSON into the file, please don't forget to save the file.
+Please make an empty file with below command.
 
+``` shell
+touch greengrass-v2-iot-policy.json
+```
+
+Please copy and paste the below JSON into the file, and replace [ARN OF IoT Role Alias] with the IoT role alias you've made in the previous section.
+Also, please don't forget to save the file.
 
 
 ``` json
@@ -67,7 +76,36 @@ After copy and paste above JSON into the file, please don't forget to save the f
     {
       "Effect": "Allow",
       "Action": "iot:AssumeRoleWithCertificate",
-      "Resource": "[ARN OF Role Alias]]"
+      "Resource": "[ARN OF IoT Role Alias]"
+    }
+  ]
+}
+
+```
+
+Below is an example JSON with an ARN OF IoT Role Alias.
+
+``` json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Subscribe",
+        "iot:Receive",
+        "iot:Connect",
+        "greengrass:*"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:AssumeRoleWithCertificate",
+      "Resource": "arn:aws:iot:us-east-1:123456789012:rolealias/GGV2WSTokenExchangeRoleAlias"
     }
   ]
 }
