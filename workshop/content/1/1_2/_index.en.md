@@ -69,17 +69,17 @@ Please copy and paste the below JSON into the file, and please don't forget to s
 ```
 
 
-Please copy the value of ***GGV2WSFleetProvisioningRole*** in ***Outputs*** tab of the CloudFormatino stack, you've made in the previsous lab.
+Please copy the value of ***GGv2WSFleetProvisioningRole*** in ***Outputs*** tab of the CloudFormatino stack, you've made in the previsous lab.
 
 ![1.jpg](/images/1/2/1.png)
 
-Please use below command to create a fleet provisioning template. Please replace [ARN OF Fleet Provisioning IAM Role] with the value of ***GGV2WSFleetProvisioningRole***, before running the command.
+Please use below command to create a fleet provisioning template. Please replace [ARN OF Fleet Provisioning IAM Role] with the value of ***GGv2WSFleetProvisioningRole***, before running the command.
 
 ``` shell
 aws iot create-provisioning-template \
-  --template-name GreengrassFleetProvisioningTemplate \
+  --template-name GGv2FleetProvisioningTemplate \
   --description "A provisioning template for Greengrass core devices." \
-  --provisioning-role-arn "[ARN OF Fleet Provisioning IAM Role]" \
+  --provisioning-role-arn "[ARN of Fleet Provisioning IAM Role]" \
   --template-body file://greengrass-fleet-provisioning-template.json \
   --enabled
 ```

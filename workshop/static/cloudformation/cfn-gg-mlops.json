@@ -2,7 +2,7 @@
     "AWSTemplateFormatVersion" : "2010-09-09",
     "Description" : "AWS CloudFormation template for an GGv2 MLOps WS.",
     "Resources" : {
-        "GGV2WSTokenExchangeRole": {
+        "GGv2WSTokenExchangeRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
             "AssumeRolePolicyDocument": {
@@ -20,10 +20,10 @@
             "Path": "/"
             }
         },
-         "GGV2WSTokenExchangeAccess" : {
+         "GGv2WSTokenExchangeAccess" : {
             "Type" : "AWS::IAM::Policy",
             "Properties" : {
-                "PolicyName" : {"Fn::Join": ["", ["GGV2WSTokenExchangeAccess-", {"Ref": "AWS::Region"} ]]},
+                "PolicyName" : {"Fn::Join": ["", ["GGv2WSTokenExchangeAccess-", {"Ref": "AWS::Region"} ]]},
                 "PolicyDocument" : {
                     "Version": "2012-10-17",
                     "Statement": [
@@ -45,11 +45,11 @@
                       }
                     ]
                   },
-                "Roles" : [ { "Ref" : "GGV2WSTokenExchangeRole" } ]
+                "Roles" : [ { "Ref" : "GGv2WSTokenExchangeRole" } ]
             }
           },
 
-         "GGV2WSFleetProvisioningRole": {
+         "GGv2WSFleetProvisioningRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
             "AssumeRolePolicyDocument": {
@@ -68,7 +68,8 @@
             "ManagedPolicyArns" : [ "arn:aws:iam::aws:policy/service-role/AWSIoTThingsRegistration" ]
             }
         },
-        "GGV2WSIoTThingPolicy": {
+
+        "GGv2ProvisioningClaimPolicy": {
           "Type": "AWS::IoT::Policy",
           "Properties": {
              "PolicyDocument": {
@@ -96,7 +97,7 @@
                     "arn:aws:iot", 
                     { "Ref": "AWS::Region"},
                     { "Ref": "AWS::AccountId"},
-                    "$aws/provisioning-templates/GreengrassFleetProvisioningTemplate/provision/*"]
+                    "$aws/provisioning-templates/GGv2FleetProvisioningTemplate/provision/*"]
                    ]
                   ]
                 },
@@ -114,7 +115,7 @@
                     "arn:aws:iot", 
                     { "Ref": "AWS::Region"},
                     { "Ref": "AWS::AccountId"},
-                    "topicfilter/$aws/provisioning-templates/GreengrassFleetProvisioningTemplate/provision/*"]
+                    "topicfilter/$aws/provisioning-templates/GGv2FleetProvisioningTemplate/provision/*"]
                    ]
                   ]
                 }
@@ -125,21 +126,21 @@
     },
   
     "Outputs" : {
-      "GGV2WSTokenExchangeRole" : {
+      "GGv2WSTokenExchangeRole" : {
         "Description" : "ARN of the token exchange IAM role",
-        "Value" : { "Fn::GetAtt" : ["GGV2WSTokenExchangeRole", "Arn"] }
+        "Value" : { "Fn::GetAtt" : ["GGv2WSTokenExchangeRole", "Arn"] }
       },
       "CreateRoleRliasCommand" : {
         "Description" : "create-role-alias command",
-        "Value" : { "Fn::Join" : ["", ["aws iot create-role-alias --role-alias GGV2WSTokenExchangeRoleAlias --role-arn ", { "Fn::GetAtt" : ["GGV2WSTokenExchangeRole", "Arn"]}]] }
+        "Value" : { "Fn::Join" : ["", ["aws iot create-role-alias --role-alias GGv2WSTokenExchangeRoleAlias --role-arn ", { "Fn::GetAtt" : ["GGv2WSTokenExchangeRole", "Arn"]}]] }
       },
-      "GGV2WSFleetProvisioningRole" : {
+      "GGv2WSFleetProvisioningRole" : {
         "Description" : "ARN oF Fleet Provisioning IAM Role",
-        "Value" : { "Fn::GetAtt" : ["GGV2WSFleetProvisioningRole", "Arn"] }
+        "Value" : { "Fn::GetAtt" : ["GGv2WSFleetProvisioningRole", "Arn"] }
       },
-      "GGV2WSIoTThingPolicy" : {
-        "Description" : "ARN of the IoT policy for AWS IoT fleet provisioning",
-        "Value" : { "Fn::GetAtt" : ["GGV2WSIoTThingPolicy", "Arn"] }
+      "GGv2ProvisioningClaimPolicy" : {
+        "Description" : "ARN of the IoT policy for provisioning claim certificate",
+        "Value" : { "Fn::GetAtt" : ["GGv2ProvisioningClaimPolicy", "Arn"] }
       }
     }
   }

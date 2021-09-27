@@ -32,7 +32,7 @@ In a terminal in Cloud9, please paste command to make an AWS IoT role alias that
 The command looks simliar to the below example.
 
 ``` shell
-aws iot create-role-alias --role-alias GGV2WSTokenExchangeRoleAlias --role-arnarn:aws:iam::123456789012:role/GGv2Workshop-GGV2WSTokenExchangeRole-1UGDXWM2VHZZE
+aws iot create-role-alias --role-alias GGv2WSTokenExchangeRoleAlias --role-arnarn:aws:iam::123456789012:role/GGv2Workshop-GGv2WSTokenExchangeRole-1UGDXWM2VHZZE
 ```
 
 The response looks similar to the following example, if the request succeeds.
@@ -48,7 +48,7 @@ Please make an empty file with below command.
 touch greengrass-v2-iot-policy.json
 ```
 
-Please copy and paste the below JSON into the file, and replace [ARN OF IoT Role Alias] with the IoT role alias you've made in the previous section.
+Please copy and paste the below JSON into the file, and replace [ARN of IoT Role Alias] with the IoT role alias you've made in the previous section.
 Also, please don't forget to save the file.
 
 
@@ -72,7 +72,7 @@ Also, please don't forget to save the file.
     {
       "Effect": "Allow",
       "Action": "iot:AssumeRoleWithCertificate",
-      "Resource": "[ARN OF IoT Role Alias]"
+      "Resource": "[ARN of IoT Role Alias]"
     }
   ]
 }
