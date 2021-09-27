@@ -35,7 +35,6 @@ This template defines two types of pages. *Default* and *Chapter*. Both can be u
 A **Chapter** displays a page meant to be used as introduction for a set of child pages. Commonly, it contains a simple title and a catch line to define content that can be found under it.
 You can define any HTML as prefix for the menu. In the example below, it's just a number but that could be an [icon](https://fortawesome.github.io/Font-Awesome/).
 
-{{< img "pages-chapter.en.png" "Chapter page" >}}
 
 ```markdown
 +++
