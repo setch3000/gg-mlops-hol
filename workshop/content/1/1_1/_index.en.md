@@ -14,10 +14,10 @@ These resources enable devices to register themselves with AWS IoT and operate a
 
 Please click [CloudFormation Link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=GGv2Workshop&templateURL=https://sehyul.s3.ap-northeast-2.amazonaws.com/gg-workshop/cfn-gg-mlops.json) to create a IAM Role with policy document that the token exchange role requires.
 
-![1.png](/images/1/1.png)
-![2.png](/images/1/2.png)
-![3.png](/images/1/3.png)
-![4.png](/images/1/4.png)
+![1.png](/images/1/1/1.png)
+![2.png](/images/1/1/2.png)
+![3.png](/images/1/1/3.png)
+![4.png](/images/1/1/4.png)
 
 
 ## Create an AWS IoT role alias that points to the token exchange role
@@ -26,7 +26,7 @@ In 1~2 minutes, you can find 'Arn of token exchange IAM role', 'create-role-alia
 
 To make an AWS IoT role alias that points to the token exchange role, please copy the command from ***CreateRoleRliasCommand*** in ***Outputs*** tab.
 
-![5.jpg](/images/1/5.png)
+![5.jpg](/images/1/1/5.png)
 
 In a terminal in Cloud9, please paste command to make an AWS IoT role alias that points to the token exchange role.
 The command looks simliar to the below example.
@@ -37,7 +37,7 @@ aws iot create-role-alias --role-alias GGV2WSTokenExchangeRoleAlias --role-arnar
 
 The response looks similar to the following example, if the request succeeds.
 
-![6.jpg](/images/1/6.png)
+![6.jpg](/images/1/1/6.png)
 
 
 ## Create an AWS IoT policy for your Greengrass devices
@@ -81,7 +81,14 @@ Also, please don't forget to save the file.
 
 Below is an example JSON with an ARN OF IoT Role Alias.
 
-![7.jpg](/images/1/7.png)
+![7.jpg](/images/1/1/7.png)
+
+
+You can check list of IoT Role Alias with below command.
+
+``` shell
+aws iot list-role-aliases
+```
 
 
 Create an AWS IoT policy from the policy document with below command. In this workshop, you will create ***GGv2IoTThingPolicy*** IoT Policy.
@@ -91,4 +98,7 @@ aws iot create-policy --policy-name GGv2IoTThingPolicy --policy-document file://
 ```
 
 The response looks similar to the following example, if the request succeeds.
-![8.jpg](/images/1/8.png)
+![8.jpg](/images/1/1/8.png)
+
+You can also find ***GGv2IoTThingPolicy*** IoT Policy in AWS IoT > Secure > Policies.
+![9.jpg](/images/1/1/9.png)
