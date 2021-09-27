@@ -1,6 +1,6 @@
 +++
 title = "Set up AWS IoT fleet provisioning"
-weight = 11
+weight = 21
 +++
 
 These resources enable devices to register themselves with AWS IoT and operate as Greengrass core devices.

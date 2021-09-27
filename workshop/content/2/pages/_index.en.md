@@ -1,6 +1,6 @@
 +++
 title = "Pages Organization"
-weight = 21
+weight = 31
 +++
 
 In **Hugo**, pages are the core of your site. All of your workshop steps should be developed as pages.
