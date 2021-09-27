@@ -1,6 +1,6 @@
 +++
 title = "Configuration"
-weight = 13
+weight = 23
 +++
 
 ## Global site parameters

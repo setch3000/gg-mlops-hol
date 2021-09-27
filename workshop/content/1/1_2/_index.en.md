@@ -1,5 +1,5 @@
 +++
-title = "Installation"
+title = "Create a fleet provisioning template"
 weight = 22
 +++
 

@@ -1,5 +1,5 @@
 +++
-title = "Set up AWS IoT fleet provisioning"
+title = "Create a token exchange IAM role"
 weight = 21
 +++
 
@@ -37,12 +37,8 @@ aws iot create-role-alias --role-alias GGV2WSTokenExchangeRoleAlias --role-arnar
 
 The response looks similar to the following example, if the request succeeds.
 
-```json
-{
-    "roleAlias": "GGV2WSTokenExchangeRoleAlias",
-    "roleAliasArn": "arn:aws:iot:us-east-1:123456789012:rolealias/GGV2WSTokenExchangeRoleAlias"
-}
-```
+![6.jpg](/images/1/6.png)
+
 
 ## Create an AWS IoT policy for your Greengrass devices
 
@@ -85,29 +81,14 @@ Also, please don't forget to save the file.
 
 Below is an example JSON with an ARN OF IoT Role Alias.
 
-``` json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Publish",
-        "iot:Subscribe",
-        "iot:Receive",
-        "iot:Connect",
-        "greengrass:*"
-      ],
-      "Resource": [
-        "*"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": "iot:AssumeRoleWithCertificate",
-      "Resource": "arn:aws:iot:us-east-1:123456789012:rolealias/GGV2WSTokenExchangeRoleAlias"
-    }
-  ]
-}
+![7.jpg](/images/1/7.png)
 
+
+Create an AWS IoT policy from the policy document with below command. In this workshop, you will create ***GGv2IoTThingPolicy*** IoT Policy.
+
+``` shell
+aws iot create-policy --policy-name GGv2IoTThingPolicy --policy-document file://greengrass-v2-iot-policy.json
 ```
+
+The response looks similar to the following example, if the request succeeds.
+![8.jpg](/images/1/8.png)
