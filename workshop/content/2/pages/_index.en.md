@@ -55,7 +55,6 @@ To tell the template to consider a page as a chapter, set `chapter=true` in the 
 
 A **Default** page is any other content page.
 
-{{< img "pages-default.en.png" "Default page" >}}
 
 ```toml
 +++
