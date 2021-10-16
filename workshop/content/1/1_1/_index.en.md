@@ -1,31 +1,35 @@
 +++
-title = "Create a token exchange IAM role"
+title = "IAM role and IoT policy for Greengrass Core device"
 weight = 21
 +++
 
 Through this lab, you will make 
-+ A token exchange IAM role, which core devices use to authorize calls to AWS services.
-+ An AWS IoT role alias that points to the token exchange role.
-+ An AWS IoT policy, which core devices use to authorize calls to the AWS IoT and AWS IoT Greengrass services.
++ ***GGv2WSTokenExchangeRole*** : A token exchange IAM role, which core devices use to authorize calls to AWS services.
++ ***GGv2WSTokenExchangeRoleAlias*** : An AWS IoT role alias that points to the token exchange role.
++ ***GGv2WSIoTThingPolicy***: An AWS IoT policy, which core devices use to authorize calls to the AWS IoT and AWS IoT Greengrass services.
+
+Device certificates and Thing registry for Greengrass core devices will be automatically through AWS IoT Fleet Provisioning.
+
+![0.png](/images/1/1/0.png)
 
 
 ## To create a token exchange IAM role
 
 Please click [CloudFormation Link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=GGv2Workshop&templateURL=https://sehyul.s3.ap-northeast-2.amazonaws.com/gg-workshop/cfn-gg-mlops.json) to create a IAM Role with policy document that the token exchange role requires.
 
-Please leave all settings as default and click ***Next***.
+In Step 1, please leave all settings as default and click ***Next***.
 
 ![1.png](/images/1/1/1.png)
 
-Please leave Stack name as default and click ***Next***.
+In Step 2, please leave Stack name as default and click ***Next***.
 
 ![2.png](/images/1/1/2.png)
 
-Please leave all settings as default and click ***Next***.
+In Step 3, please leave all settings as default and click ***Next***.
 
 ![3.png](/images/1/1/3.png)
 
-Please check ***I acknowledge that AWS CloudFormation might create IAM resources.*** and click ***Create stack***.
+In Step 4, please check ***I acknowledge that AWS CloudFormation might create IAM resources.*** and click ***Create stack***.
 
 ![4.png](/images/1/1/4.png)
 
