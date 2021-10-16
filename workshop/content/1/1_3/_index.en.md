@@ -1,6 +1,6 @@
 +++
 title = "fleet provisioning template and claim cert"
-weight = 22
+weight = 23
 +++
 
 Through this lab, you will make 
