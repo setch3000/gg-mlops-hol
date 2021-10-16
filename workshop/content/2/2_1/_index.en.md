@@ -42,7 +42,7 @@ When Cloud9 is created, the following screen is shown. If the result is printed 
 
 Please click 'gear icon' in the upper right, and please find 'AWS SETTINGS' and turn off 'AWS managed temporary creditionals'.
 
-{{% notice warn %}}
+{{% notice warning %}}
 Cloud9 has 'AWS managed temporary credentials' to call AWS CLI in default. However, edge devices where Greengrass V2 core software is installed do not have AWS credentials in default.
 Therefore, you turned off 'AWS managed temporary credentials' for making similar situation to actual edge devices.
 {{% /notice %}}
