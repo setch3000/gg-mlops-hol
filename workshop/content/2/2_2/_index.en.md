@@ -86,6 +86,7 @@ Please ensure the config file is correclty located with below command.
 cat GreengrassInstaller/config.yaml 
 ```
 
+Please run the Greengrass V2 installer.
 
 ``` shell
 sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE \
@@ -96,7 +97,13 @@ sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE \
   --setup-system-service true
 ```
 
-Please run below command to check Greengrass core software log.
+You can verify the installation by viewing the files in the root folder.
+
+``` shell
+ls /greengrass/v2
+```
+
+Please open new terminal in Cloud9 and run below command to check Greengrass core software log.
 
 ``` shell
 sudo tail -f /greengrass/v2/logs/greengrass.log
