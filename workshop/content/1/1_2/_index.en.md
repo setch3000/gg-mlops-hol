@@ -3,6 +3,9 @@ title = "Create a fleet provisioning template"
 weight = 22
 +++
 
+Through this lab, you will make 
++ An AWS IoT fleet provisioning template.
++ An AWS IoT provisioning claim certificate and private key for the fleet provisioning template
 
 ## Create a fleet provisioning template
 
@@ -84,5 +87,7 @@ aws iot create-provisioning-template \
   --enabled
 ```
 
+The response looks similar to the following example, if the request succeeds.
+![2.jpg](/images/1/2/2.png)
 
 
