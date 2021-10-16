@@ -1,5 +1,5 @@
 +++
-title = "fleet provisioning template and claim cert"
+title = "Greengrass configuration file"
 weight = 23
 +++
 
@@ -9,7 +9,7 @@ Through this lab, you will make
 
 ## Create a Thing Group
 
-{{% notice note %}}
+{{% notice warn %}}
 The thing group must exist in your AWS account, before Fleet Provisioning
 {{% /notice %}}
 
@@ -66,11 +66,12 @@ services:
 
 ```
 
-![7.jpg](/images/1/3/1.png)
-
+![1.jpg](/images/1/3/1.png)
 
 Please right click on ***config.yaml*** and click ***Download***, to download it.
 You will use this this file for setting up Greengrass V2 with AWS IoT Fleet Provisioning in the following labs.
 
-![7.jpg](/images/1/3/2.png)
+![2.jpg](/images/1/3/2.png)
 
+After you completed this lab, you can close the browser tab of ***IoT ML*** Cloud9 IDE.
+![3.jpg](/images/1/3/3.png)

@@ -103,3 +103,6 @@ sudo tail -f /greengrass/v2/logs/greengrass.log
 ```
 
 ![6.png](/images/2/2/6.png)
+
+
+![7.png](/images/2/2/7.png)
