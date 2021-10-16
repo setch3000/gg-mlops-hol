@@ -91,3 +91,84 @@ The response looks similar to the following example, if the request succeeds.
 ![2.jpg](/images/1/2/2.png)
 
 
+## Create a provisioning claim certificate and private key
+
+First, use the following command in the terminal of Cloud9 IDE to check the AWS account id currently in use.
+
+```
+aws sts get-caller-identity --query Account --output text
+```
+
+Please make a empty file for AWS IoT policy document that Greengrass core devices require
+
+```
+touch greengrass-provisioning-claim-iot-policy.json
+```
+
+Please coyp belo JSON file and paste it into the empty file. Please replace [account-id] with your AWS account id, which you've checked above.
+
+``` json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "iot:Connect",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Receive"
+      ],
+      "Resource": [
+        "arn:aws:iot:us-east-1:[account-id]:topic/$aws/certificates/create/*",
+        "arn:aws:iot:us-east-1:[account-id]:topic/$aws/provisioning-templates/GGv2FleetProvisioningTemplate/provision/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Subscribe",
+      "Resource": [
+        "arn:aws:iot:us-east-1:[account-id]:topicfilter/$aws/certificates/create/*",
+        "arn:aws:iot:us-east-1:[account-id]:topicfilter/$aws/provisioning-templates/GGv2FleetProvisioningTemplate/provision/*"
+      ]
+    }
+  ]
+}
+```
+![3.jpg](/images/1/2/3.png)
+
+Please create an AWS IoT policy from the policy document with belwo command.
+
+``` shell
+aws iot create-policy --policy-name GGv2WSProvisioningClaimPolicy --policy-document file://greengrass-provisioning-claim-iot-policy.json
+
+```
+
+The response looks similar to the following example, if the request succeeds.
+![4.jpg](/images/1/2/4.png)
+
+
+Create and save a certificate and private key to use for provisioning. AWS IoT provides client certificates that are signed by the Amazon Root certificate authority (CA).
+
+``` shell
+mkdir claim-certs
+aws iot create-keys-and-certificate \
+  --certificate-pem-outfile "claim-certs/claim.pem.crt" \
+  --public-key-outfile "claim-certs/claim.public.pem.key" \
+  --private-key-outfile "claim-certs/claim.private.pem.key" \
+  --set-as-active
+```
+
+The response looks similar to the following example, if the request succeeds. 
+
+Please copy "certificateArn" from the response and replace [certificateArn] with it in below command.
+![5.jpg](/images/1/2/5.png)
+
+``` shell
+aws iot attach-policy --policy-name GGv2WSProvisioningClaimPolicy --target [certificateArn]
+```
+
+The command doesn't have any output if the request succeeds.
