@@ -12,3 +12,85 @@ Please click ***Workshop GGv2 Core Devices*** on FILE SYSTEM, and click ***File*
 Please find and upload ***claim-certs.tar.gz*** file which you've downloaded in the pervious lab.
 
 ![2.png](/images/2/2/2.png)
+
+
+Please make a directoy where Greengrass V2 core software will be installed.
+
+``` shell
+sudo mkdir -p /greengrass/v2
+sudo chmod 755 /greengrass
+```
+
+Please extract claim certificates and private key.
+
+``` shell
+sudo tar -xvf claim-certs.tar.gz -C /greengrass/v2
+```
+
+Pleae check if all files are located correctly.
+
+sudo ls /greengrass/v2 -al
+sudo ls /greengrass/v2/claim-certs -al
+
+![3.png](/images/2/2/3.png)
+
+
+## Download the AWS IoT Greengrass Core software
+
+On your Cloud9 which acts as an edge device, please download the AWS IoT Greengrass Core software to a file named greengrass-nucleus-latest.zip.
+
+``` shell
+curl -s https://d2s8p88vqu9w66.cloudfront.net/releases/greengrass-nucleus-latest.zip > greengrass-nucleus-latest.zip
+```
+
+Please Unzip the AWS IoT Greengrass Core software to a folder.
+
+``` shell
+unzip greengrass-nucleus-latest.zip -d GreengrassInstaller && rm greengrass-nucleus-latest.zip
+```
+
+Please run the following command to see the version of the AWS IoT Greengrass Core software.
+
+``` shell
+java -jar ./GreengrassInstaller/lib/Greengrass.jar --version
+```
+
+![4.png](/images/2/2/4.png)
+
+
+## Download the AWS IoT fleet provisioning plugin
+
+curl -s https://d2s8p88vqu9w66.cloudfront.net/releases/aws-greengrass-FleetProvisioningByClaim/fleetprovisioningbyclaim-latest.jar > GreengrassInstaller/aws.greengrass.FleetProvisioningByClaim.jar
+
+
+## To install the AWS IoT Greengrass Core software
+
+Please click ***GreengrassInstaller*** directory on FILE SYSTEM, and click ***File*** and ***Upload Local Files...***.
+
+![5.png](/images/2/2/5.png)
+
+
+Please ensure the config file is correclty located with below command.
+
+``` shell
+cat GreengrassInstaller/config.yaml 
+```
+
+
+``` shell
+sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE \
+  -jar ./GreengrassInstaller/lib/Greengrass.jar \
+  --trusted-plugin ./GreengrassInstaller/aws.greengrass.FleetProvisioningByClaim.jar \
+  --init-config ./GreengrassInstaller/config.yaml \
+  --component-default-user ggc_user:ggc_group \
+  --setup-system-service true
+```
+
+
+Please run below command to check Greengrass core software log.
+
+``` shell
+sudo tail -f /greengrass/v2/logs/greengrass.log
+```
+
+![6.png](/images/2/2/6.png)

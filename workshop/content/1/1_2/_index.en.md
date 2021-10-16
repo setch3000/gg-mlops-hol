@@ -182,3 +182,49 @@ Please right click on ***claim-certs*** , and click ***Download***. Then, you ca
 You will use this ZIP file for setting up Greengrass V2 with AWS IoT Fleet Provisioning in the following labs.
 
 ![5.jpg](/images/1/2/6.png)
+
+
+
+
+## Create and download a Greengrass configuration file
+
+``` shell
+aws iot describe-endpoint --endpoint-type iot:Data-ATS
+```
+
+``` shell
+aws iot describe-endpoint --endpoint-type iot:CredentialProvider
+```
+
+
+``` shell
+touch config.yaml
+```
+
+
+``` yaml
+---
+services:
+  aws.greengrass.Nucleus:
+    version: "2.4.0"
+  aws.greengrass.FleetProvisioningByClaim:
+    configuration:
+      rootPath: /greengrass/v2
+      awsRegion: "us-east-1"
+      iotDataEndpoint: "device-data-prefix-ats.iot.us-west-2.amazonaws.com"
+      iotCredentialEndpoint: "device-credentials-prefix.credentials.iot.us-west-2.amazonaws.com"
+      iotRoleAlias: "GGv2WSTokenExchangeRoleAlias"
+      provisioningTemplate: "GGv2FleetProvisioningTemplate"
+      claimCertificatePath: "/greengrass/v2/claim-certs/claim.pem.crt"
+      claimCertificatePrivateKeyPath: "/greengrass/v2/claim-certs/claim.private.pem.key"
+      rootCaPath: "/greengrass/v2/AmazonRootCA1.pem"
+      templateParameters:
+        ThingName: "GGv2WSMyGreengrassCore"
+        ThingGroupName: "GGv2WSGreengrassCoreGroup"
+
+```
+
+
+
+
+Please right click on ***config.yaml*** , and click ***Download***. 
