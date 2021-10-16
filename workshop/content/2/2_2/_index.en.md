@@ -36,8 +36,10 @@ sudo curl -o /greengrass/v2/AmazonRootCA1.pem https://www.amazontrust.com/reposi
 
 Pleae check if all files are located correctly.
 
+``` shell
 sudo ls /greengrass/v2 -al
 sudo ls /greengrass/v2/claim-certs -al
+```
 
 ![3.png](/images/2/2/3.png)
 
