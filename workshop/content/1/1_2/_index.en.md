@@ -80,7 +80,7 @@ Please use below command to create a fleet provisioning template. Please replace
 
 ``` shell
 aws iot create-provisioning-template \
-  --template-name GGv2FleetProvisioningTemplate \
+  --template-name GGv2WSFleetProvisioningTemplate \
   --description "A provisioning template for Greengrass core devices." \
   --provisioning-role-arn "[ARN of Fleet Provisioning IAM Role]" \
   --template-body file://greengrass-fleet-provisioning-template.json \

@@ -31,7 +31,7 @@ In a terminal in Cloud9, please paste command to make an AWS IoT role alias that
 The command looks simliar to the below example.
 
 ``` shell
-aws iot create-role-alias --role-alias GGv2WSTokenExchangeRoleAlias --role-arnarn:aws:iam::123456789012:role/GGv2Workshop-GGv2WSTokenExchangeRole-1UGDXWM2VHZZE
+ aws iot create-role-alias --role-alias GGv2WSTokenExchangeRoleAlias --role-arn arn:aws:iam::644973932540:role/GGv2Workshop-GGv2WSTokenExchangeRole-X65E90JE1G7O
 ```
 
 The response looks similar to the following example, if the request succeeds.
