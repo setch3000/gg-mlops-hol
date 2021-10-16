@@ -2,7 +2,6 @@
 title = "Create Cloud9 Environment"
 chapter = true
 weight = 11
-pre = "<b>0. </b>"
 +++
 
 Please go to [AWS Cloud9 console](https://console.aws.amazon.com/cloud9/home/create?region=us-east-1) and create an environment.
@@ -31,5 +30,5 @@ When Cloud9 is created, the following screen is shown. If the result is printed 
 ![5.png](/images/0/5.png)
 
 Please click 'gear icon' in the upper left, and click 'Show Home in Favorites'.
-![5.png](/images/0/6.png)
+![6.png](/images/0/6.png)
 
