@@ -13,9 +13,20 @@ Through this lab, you will make
 
 Please click [CloudFormation Link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=GGv2Workshop&templateURL=https://sehyul.s3.ap-northeast-2.amazonaws.com/gg-workshop/cfn-gg-mlops.json) to create a IAM Role with policy document that the token exchange role requires.
 
+Please leave all settings as default and click ***Next***.
+
 ![1.png](/images/1/1/1.png)
+
+Please leave Stack name as default and click ***Next***.
+
 ![2.png](/images/1/1/2.png)
+
+Please leave all settings as default and click ***Next***.
+
 ![3.png](/images/1/1/3.png)
+
+Please check ***I acknowledge that AWS CloudFormation might create IAM resources.*** and click ***Create stack***.
+
 ![4.png](/images/1/1/4.png)
 
 
@@ -92,16 +103,16 @@ aws iot describe-role-alias --role-alias GGV2WSTokenExchangeRoleAlias
 ``` -->
 
 
-Create an AWS IoT policy from the policy document with below command. In this workshop, you will create ***GGv2IoTThingPolicy*** IoT Policy.
+Create an AWS IoT policy from the policy document with below command. In this workshop, you will create ***GGv2WSIoTThingPolicy*** IoT Policy.
 
 ``` shell
-aws iot create-policy --policy-name GGv2IoTThingPolicy --policy-document file://greengrass-v2-iot-policy.json
+aws iot create-policy --policy-name GGv2WSIoTThingPolicy --policy-document file://greengrass-v2-iot-policy.json
 ```
 
 The response looks similar to the following example, if the request succeeds.
 ![8.jpg](/images/1/1/8.png)
 
-You can also find ***GGv2IoTThingPolicy*** IoT Policy in AWS IoT > Secure > Policies.
+You can also find ***GGv2WSIoTThingPolicy*** IoT Policy in AWS IoT > Secure > Policies.
 ![9.jpg](/images/1/1/9.png)
 
 

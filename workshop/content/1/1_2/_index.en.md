@@ -53,7 +53,7 @@ Please copy and paste the below JSON into the file, and please don't forget to s
     },
     "MyPolicy": {
       "Properties": {
-        "PolicyName": "GGv2IoTThingPolicy"
+        "PolicyName": "GGv2WSIoTThingPolicy"
       },
       "Type": "AWS::IoT::Policy"
     },
