@@ -7,6 +7,3 @@ weight = 23
 
 
 
-{{% notice note %}}
-In actual case, you will use different machines to 
-{{% /notice %}}
