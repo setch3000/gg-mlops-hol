@@ -1,8 +1,7 @@
 +++
 title = "Create Cloud9 Environment"
 chapter = true
-weight = 11
-pre = "<b>0. </b>"
+weight = 31
 +++
 
 {{% notice note %}}
@@ -14,14 +13,14 @@ Please go to [AWS Cloud9 console](https://console.aws.amazon.com/cloud9/home/cre
 
 Please enter a name (e.g. ```Workshop GGv2 Core Device```).
 
-![1.png](/images/2/1.png)
+![1.png](/images/2/1/1.png)
 
 Please follow below settings and click ***Next step***.
 + Create a new EC2 instance for environment (direct access)
 + t3.small (2 GiB RAM + 2 vCPU)
 + Ubuntu Server 18.04 LTS
 
-![2.png](/images/2/2.png)
+![2.png](/images/2/1/2.png)
 
 Please review envionment name and settiongs, and click ***Create Environment***.
 
@@ -33,9 +32,9 @@ You can see the screen Cloud9 is creating. This process can take several minutes
 
 
 Please click 'setting icon' in the upper left, and click 'Show Home in Favorites'.
-![5.png](/images/2/5.png)
+![5.png](/images/2/1/5.png)
 
 
 When Cloud9 is created, the following screen is shown. If the result is printed out by entering a Linux command such as 'ls' or 'pwd' in the terminal at the bottom of the screen, it was created normally.
 
-![6.png](/images/2/6.png)
+![6.png](/images/2/1/6.png)

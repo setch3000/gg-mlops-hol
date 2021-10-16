@@ -178,7 +178,7 @@ The command doesn't have any output if the request succeeds.
 
 ## Download claim certificates to your laptop
 
-Please right click on ***claim-certs*** , and click ***Download***. Then, you can download claim certificates and private key with a ZIP file named 'claim-certs.tar.gz'.
+Please right click on ***claim-certs*** , and click ***Download***. Then, you can download claim certificates and private key with a ZIP file named ***claim-certs.tar.gz***.
 You will use this ZIP file for setting up Greengrass V2 with AWS IoT Fleet Provisioning in the following labs.
 
 ![5.jpg](/images/1/2/6.png)
