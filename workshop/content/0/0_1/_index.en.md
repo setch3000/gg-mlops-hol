@@ -29,3 +29,7 @@ You can see the screen Cloud9 is creating. This process can take several minutes
 When Cloud9 is created, the following screen is shown. If the result is printed out by entering a Linux command such as 'ls' in the terminal at the bottom of the screen, it was created normally.
 
 ![5.png](/images/0/5.png)
+
+Please click 'gear icon' in the upper left, and click 'Show Home in Favorites'.
+![5.png](/images/0/6.png)
+
