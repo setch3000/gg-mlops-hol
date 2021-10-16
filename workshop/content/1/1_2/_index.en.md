@@ -222,7 +222,7 @@ services:
       iotDataEndpoint: "device-data-prefix-ats.iot.us-west-2.amazonaws.com"
       iotCredentialEndpoint: "device-credentials-prefix.credentials.iot.us-west-2.amazonaws.com"
       iotRoleAlias: "GGv2WSTokenExchangeRoleAlias"
-      provisioningTemplate: "GGv2FleetProvisioningTemplate"
+      provisioningTemplate: "GGv2WSFleetProvisioningTemplate"
       claimCertificatePath: "/greengrass/v2/claim-certs/claim.pem.crt"
       claimCertificatePrivateKeyPath: "/greengrass/v2/claim-certs/claim.private.pem.key"
       rootCaPath: "/greengrass/v2/AmazonRootCA1.pem"
