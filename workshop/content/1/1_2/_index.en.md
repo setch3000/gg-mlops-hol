@@ -124,7 +124,7 @@ Please coyp belo JSON file and paste it into the empty file. Please replace [acc
       ],
       "Resource": [
         "arn:aws:iot:us-east-1:[account-id]:topic/$aws/certificates/create/*",
-        "arn:aws:iot:us-east-1:[account-id]:topic/$aws/provisioning-templates/GGv2FleetProvisioningTemplate/provision/*"
+        "arn:aws:iot:us-east-1:[account-id]:topic/$aws/provisioning-templates/GGv2WSFleetProvisioningTemplate/provision/*"
       ]
     },
     {
@@ -132,7 +132,7 @@ Please coyp belo JSON file and paste it into the empty file. Please replace [acc
       "Action": "iot:Subscribe",
       "Resource": [
         "arn:aws:iot:us-east-1:[account-id]:topicfilter/$aws/certificates/create/*",
-        "arn:aws:iot:us-east-1:[account-id]:topicfilter/$aws/provisioning-templates/GGv2FleetProvisioningTemplate/provision/*"
+        "arn:aws:iot:us-east-1:[account-id]:topicfilter/$aws/provisioning-templates/GGv2WSFleetProvisioningTemplate/provision/*"
       ]
     }
   ]
@@ -181,9 +181,17 @@ The command doesn't have any output if the request succeeds.
 Please right click on ***claim-certs*** , and click ***Download***. Then, you can download claim certificates and private key with a ZIP file named ***claim-certs.tar.gz***.
 You will use this ZIP file for setting up Greengrass V2 with AWS IoT Fleet Provisioning in the following labs.
 
-![5.jpg](/images/1/2/6.png)
+![6.jpg](/images/1/2/6.png)
 
+{{% notice note %}}
+The thing group must exist in your AWS account.
+{{% /notice %}}
 
+Please use below coammand for creating a thing group.
+
+``` shell
+aws iot create-thing-group --thing-group-name GGv2WSGreengrassCoreGroup
+```
 
 
 ## Create and download a Greengrass configuration file
@@ -224,7 +232,10 @@ services:
 
 ```
 
+![7.jpg](/images/1/2/7.png)
 
 
 
 Please right click on ***config.yaml*** , and click ***Download***. 
+
+![7.jpg](/images/1/2/8.png)
