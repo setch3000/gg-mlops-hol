@@ -27,6 +27,13 @@ Please extract claim certificates and private key.
 sudo tar -xvf claim-certs.tar.gz -C /greengrass/v2
 ```
 
+
+Please download the Amazon root certificate authority (CA) certificate. AWS IoT certificates are associated with Amazon's root CA certificate by default.
+
+``` shell
+sudo curl -o /greengrass/v2/AmazonRootCA1.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem
+```
+
 Pleae check if all files are located correctly.
 
 sudo ls /greengrass/v2 -al
@@ -86,7 +93,6 @@ sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE \
   --component-default-user ggc_user:ggc_group \
   --setup-system-service true
 ```
-
 
 Please run below command to check Greengrass core software log.
 
