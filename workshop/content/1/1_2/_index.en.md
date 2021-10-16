@@ -138,13 +138,15 @@ Please coyp belo JSON file and paste it into the empty file. Please replace [acc
   ]
 }
 ```
+
+Below screenshot shows an example of AWS IoT policy document after [account-id] was replaced with your AWS account number.
+
 ![3.jpg](/images/1/2/3.png)
 
 Please create an AWS IoT policy from the policy document with belwo command.
 
 ``` shell
 aws iot create-policy --policy-name GGv2WSProvisioningClaimPolicy --policy-document file://greengrass-provisioning-claim-iot-policy.json
-
 ```
 
 The response looks similar to the following example, if the request succeeds.
@@ -172,3 +174,11 @@ aws iot attach-policy --policy-name GGv2WSProvisioningClaimPolicy --target [cert
 ```
 
 The command doesn't have any output if the request succeeds.
+
+
+## Download claim certificates to your laptop
+
+Please right click on ***claim-certs*** , and click ***Download***. Then, you can download claim certificates and private key with a ZIP file named 'claim-certs.tar.gz'.
+You will use this ZIP file for setting up Greengrass V2 with AWS IoT Fleet Provisioning in the following labs.
+
+![5.jpg](/images/1/2/6.png)

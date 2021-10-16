@@ -3,12 +3,11 @@ title = "Create a token exchange IAM role"
 weight = 21
 +++
 
-These resources enable devices to register themselves with AWS IoT and operate as Greengrass core devices.
+Through this lab, you will make 
 + A token exchange IAM role, which core devices use to authorize calls to AWS services.
 + An AWS IoT role alias that points to the token exchange role.
-+ (Optional) An AWS IoT policy, which core devices use to authorize calls to the AWS IoT and AWS IoT Greengrass services.
-+ An AWS IoT fleet provisioning template.
-+ An AWS IoT provisioning claim certificate and private key for the fleet provisioning template
++ An AWS IoT policy, which core devices use to authorize calls to the AWS IoT and AWS IoT Greengrass services.
+
 
 ## To create a token exchange IAM role
 
@@ -36,6 +35,7 @@ aws iot create-role-alias --role-alias GGv2WSTokenExchangeRoleAlias --role-arnar
 ```
 
 The response looks similar to the following example, if the request succeeds.
+Please copy "roleAliasArn" value from the response, and paste it notepad or somewhere so that you can use it for the next section.
 
 ![6.jpg](/images/1/1/6.png)
 
@@ -84,11 +84,12 @@ Below is an example JSON with an ARN OF IoT Role Alias.
 ![7.jpg](/images/1/1/7.png)
 
 
-You can check list of IoT Role Alias with below command.
+<!-- You can check list of IoT Role Alias with below command.
 
 ``` shell
 aws iot list-role-aliases
-```
+aws iot describe-role-alias --role-alias GGV2WSTokenExchangeRoleAlias
+``` -->
 
 
 Create an AWS IoT policy from the policy document with below command. In this workshop, you will create ***GGv2IoTThingPolicy*** IoT Policy.
@@ -102,3 +103,9 @@ The response looks similar to the following example, if the request succeeds.
 
 You can also find ***GGv2IoTThingPolicy*** IoT Policy in AWS IoT > Secure > Policies.
 ![9.jpg](/images/1/1/9.png)
+
+
+You have made 
++ A token exchange IAM role, which core devices use to authorize calls to AWS services.
++ An AWS IoT role alias that points to the token exchange role.
++ An AWS IoT policy, which core devices use to authorize calls to the AWS IoT and AWS IoT Greengrass services.
