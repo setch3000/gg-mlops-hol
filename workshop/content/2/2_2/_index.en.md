@@ -60,8 +60,9 @@ java -jar ./GreengrassInstaller/lib/Greengrass.jar --version
 
 ## Download the AWS IoT fleet provisioning plugin
 
+``` shell
 curl -s https://d2s8p88vqu9w66.cloudfront.net/releases/aws-greengrass-FleetProvisioningByClaim/fleetprovisioningbyclaim-latest.jar > GreengrassInstaller/aws.greengrass.FleetProvisioningByClaim.jar
-
+```
 
 ## To install the AWS IoT Greengrass Core software
 
