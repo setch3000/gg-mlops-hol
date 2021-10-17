@@ -1,6 +1,7 @@
 import json
 import time
 import os
+import random
 
 import awsiot.greengrasscoreipc
 import awsiot.greengrasscoreipc.model as model
@@ -11,16 +12,16 @@ if __name__ == '__main__':
     while True:
         telemetry_data = {
             "timestamp": int(round(time.time() * 1000)),
-            "battery_state_of_charge": 42.5,
+            "battery_level": random.randrange(15, 101),
             "location": {
-                "longitude": 48.15743,
-                "latitude": 11.57549,
+                "longitude": random.uniform(101.0, 120.0),
+                "latitude": random.uniform(30.0, 40.0),
             },
         }
 
         op = ipc_client.new_publish_to_iot_core()
         op.activate(model.PublishToIoTCoreRequest(
-            topic_name="my/iot/{}/telemetry".format(os.getenv("AWS_IOT_THING_NAME")),
+            topic_name="ggv2/{}/telemetry".format(os.getenv("AWS_IOT_THING_NAME")),
             qos=model.QOS.AT_LEAST_ONCE,
             payload=json.dumps(telemetry_data).encode(),
         ))
