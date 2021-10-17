@@ -39,6 +39,30 @@ When Cloud9 is created, the following screen is shown. If the result is printed 
 
 ![6.png](/images/3/1/6.png)
 
+Run the following command to update your AWS CLI to latest:
+
+``` shell
+curl https://aws-iot-workshop-artifacts.s3-eu-west-1.amazonaws.com/resources/2021-03-31/src/customScripts/updateCLI.sh | sh
+```
+
+Once thats complete let’s run the following command in a Cloud9 terminal to expand Cloud9’s disk space and restart your Cloud9 instance.
+
+``` shell
+curl https://aws-iot-workshop-artifacts.s3-eu-west-1.amazonaws.com/resources/2021-03-31/src/customScripts/resize_volume.sh | sh
+```
+
+While the instance is restarting, Reconnecting ... will be displayed, so please wait until the instance restart is completed. After the instance restarts, open a new terminal in Cloud9 and run the following command to check the disk space.
+
+``` shell
+df -h
+```
+
+In the command execution result, check that / is 45GB or more as shown below.
+
+``` shell
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p1   49G  7.9G   41G  17% /
+```
 
 Please click 'gear icon' in the upper right, and please find 'AWS SETTINGS' and turn off 'AWS managed temporary creditionals'.
 
