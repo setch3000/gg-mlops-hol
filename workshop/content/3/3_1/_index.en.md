@@ -122,16 +122,24 @@ sudo /greengrass/v2/bin/greengrass-cli deployment create \
   --merge "com.example.HelloMqtt=1.0.0"
 ```
 
+![1.png](/images/3/1/1.png)
+
+
 Open New terminal
 
 ``` shell
 sudo tail -f /greengrass/v2//logs/com.example.HelloMqtt.log
 ```
 
+
+
+![2.png](/images/3/1/2.png)
+
+
+
 ``` shell
 sudo /greengrass/v2/bin/greengrass-cli deployment create --remove="com.example.HelloMqtt"
 ```
-
 
 # References
 
