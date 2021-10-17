@@ -31,4 +31,3 @@ When Cloud9 is created, the following screen is shown. If the result is printed 
 
 Please click 'gear icon' in the upper left, and click 'Show Home in Favorites'.
 ![6.png](/images/0/6.png)
-

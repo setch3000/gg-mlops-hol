@@ -66,6 +66,8 @@ services:
 
 ```
 
+Please refer to below sceenshot to make a configuration file.
+
 ![1.jpg](/images/2/3/1.png)
 
 Please right click on ***config.yaml*** and click ***Download***, to download it.
