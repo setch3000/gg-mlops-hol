@@ -5,7 +5,7 @@ weight = 51
 
 ## Greengrass CLI
 
-The Greengrass CLI component (aws.greengrass.Cli) provides a local command-line interface that you can use on core devices to develop and debug components locally. 
+The Greengrass CLI component (aws.greengrass.Cli) provides a local command-line interface that you can use on core devices to develop and debug components locally.
 
 please run below command to check if Greengrass CLI component is installed.
 
@@ -13,14 +13,11 @@ please run below command to check if Greengrass CLI component is installed.
 /greengrass/v2/bin/greengrass-cli help
 ```
 
-## Create a Deployment
-
+If above command is successful, please run below command to see component list on you Greengrass Core device.
 
 ``` shell
 sudo /greengrass/v2/bin/greengrass-cli component list
 ```
-
-
 
 ## Creating a Greengrass componet
 
