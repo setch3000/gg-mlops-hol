@@ -68,7 +68,7 @@ services:
 
 Please refer to below sceenshot to make a configuration file.
 
-![3.jpg](/images/2/3/1.png)
+![4.jpg](/images/2/3/4.png)
 
 Please right click on ***config.yaml*** and click ***Download***, to download it.
 You will use this this file for setting up Greengrass V2 with AWS IoT Fleet Provisioning in the following labs.
@@ -79,4 +79,3 @@ After you completed this lab, you can close the browser tab of ***IoT ML*** Clou
 ![3.jpg](/images/2/3/3.png)
 
 
-![4.jpg](/images/2/3/4.png)
