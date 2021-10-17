@@ -1,161 +1,50 @@
 +++
-title = "Local development"
+title = "Create Cloud9 Environment"
+chapter = true
 weight = 41
 +++
 
-## Greengrass CLI
+{{% notice note %}}
+In actual case, you will setup AWS IoT Fleet Provisioning on machines for administration and setup Greengrass V2 core software on edge devices.
+In this lab, you will create a separate Cloud9 instance which acts as an edge devices.
+{{% /notice %}}
 
-The Greengrass CLI component (aws.greengrass.Cli) provides a local command-line interface that you can use on core devices to develop and debug components locally. 
+Please go to [AWS Cloud9 console](https://console.aws.amazon.com/cloud9/home/create?region=us-east-1) and create an environment.
 
-please run below command to check if Greengrass CLI component is installed.
-
-```
-/greengrass/v2/bin/greengrass-cli help
-```
-
-## Create a Deployment
-
-
-``` shell
-sudo /greengrass/v2/bin/greengrass-cli component list
-```
-
-
-
-## Creating a Greengrass componet
-
-``` shell
-mkdir -p ~/GGv2Dev/recipes
-touch ~/GGv2Dev/recipes/com.example.HelloMqtt-1.0.0.json
-```
-
-``` json
-{
-	"RecipeFormatVersion": "2020-01-25",
-	"ComponentName": "com.example.HelloMqtt",
-	"ComponentVersion": "1.0.0",
-	"ComponentDescription": "My first AWS IoT Greengrass component.",
-	"ComponentPublisher": "Amazon",
-	"ComponentConfiguration": {
-		"DefaultConfiguration": {
-			"accessControl": {
-				"aws.greengrass.ipc.mqttproxy": {
-					"com.example.HelloMqtt:mqttproxy:1": {
-						"policyDescription": "Allows access to publish to all AWS IoT Core topics.",
-						"operations": [
-							"aws.greengrass#PublishToIoTCore"
-						],
-						"resources": [
-							"*"
-						]
-					}
-				}
-			}
-		}
-	},
-	"Manifests": [{
-		"Platform": {
-			"os": "linux"
-		},
-		"Lifecycle": {
-			"Install": {
-				"RequiresPrivilege": true,
-				"Script": "sudo pip3 install awsiotsdk"
-			},
-			"Run": "python3 {artifacts:path}/hello_mqtt.py"
-		}
-	}]
-}
-
-```
-
-
-
-``` shell
-mkdir -p ~/GGv2Dev/artifacts/com.example.HelloMqtt/1.0.0
-touch ~/GGv2Dev/artifacts/com.example.HelloMqtt/1.0.0/hello_mqtt.py
-```
-
-
-```python
-import json
-import time
-import os
-import random
-
-import awsiot.greengrasscoreipc
-import awsiot.greengrasscoreipc.model as model
-
-if __name__ == '__main__':
-    ipc_client = awsiot.greengrasscoreipc.connect()
-
-    while True:
-        telemetry_data = {
-            "timestamp": int(round(time.time() * 1000)),
-            "battery_level": random.randrange(98, 101),
-            "location": {
-                "longitude": round(random.uniform(101.0, 120.0),2),
-                "latitude": round(random.uniform(30.0, 40.0),2),
-            },
-        }
-
-        op = ipc_client.new_publish_to_iot_core()
-        op.activate(model.PublishToIoTCoreRequest(
-            topic_name="ggv2/{}/telemetry".format(os.getenv("AWS_IOT_THING_NAME")),
-            qos=model.QOS.AT_LEAST_ONCE,
-            payload=json.dumps(telemetry_data).encode(),
-        ))
-        try:
-            result = op.get_response().result(timeout=1.0)
-            print("successfully published message:", result)
-        except Exception as e:
-            print("failed to publish message:", e)
-
-        time.sleep(5)
-```
-
-
-``` shell
-sudo /greengrass/v2/bin/greengrass-cli deployment create \
-  --recipeDir ~/GGv2Dev/recipes \
-  --artifactDir ~/GGv2Dev/artifacts \
-  --merge "com.example.HelloMqtt=1.0.0"
-```
+Please enter a name (e.g. ```Workshop GGv2 Core Device```).
 
 ![1.png](/images/3/1/1.png)
 
-
-Open New terminal
-
-``` shell
-sudo tail -f /greengrass/v2//logs/com.example.HelloMqtt.log
-```
-
-
+Please follow below settings and click ***Next step***.
++ Create a new EC2 instance for environment (direct access)
++ t3.small (2 GiB RAM + 2 vCPU)
++ Ubuntu Server 18.04 LTS
 
 ![2.png](/images/3/1/2.png)
 
+Please review envionment name and settiongs, and click ***Create Environment***.
+
+![3.png](/images/3/1/3.png)
+
+You can see the screen Cloud9 is creating. This process can take several minutes.
+
+![4.png](/images/3/1/4.png)
 
 
-``` shell
-sudo /greengrass/v2/bin/greengrass-cli deployment create --remove="com.example.HelloMqtt"
-```
-
-# References
-
-sudo /greengrass/v2/bin/greengrass-cli component restart \
-  --names "com.example.HelloWorld"
-sudo /greengrass/v2/bin/greengrass-cli component list
-
-sudo /greengrass/v2/bin/greengrass-cli deployment create --remove="com.example.HelloMqtt"
-
-aws s3 cp \
-  ~/GGv2Dev/artifacts/com.example.HelloWorld/1.0.0/hello_world.py \
-  s3://sehyul/gg-workshop/artifacts/com.example.HelloWorld/1.0.0/hello_world.py
+Please click 'gear icon' in the upper left, and click 'Show Home in Favorites'.
+![5.png](/images/3/1/5.png)
 
 
+When Cloud9 is created, the following screen is shown. If the result is printed out by entering a Linux command such as 'ls' or 'pwd' in the terminal at the bottom of the screen, it was created normally.
 
-  s3://DOC-EXAMPLE-BUCKET/artifacts/com.example.HelloWorld/1.0.0/hello_world.py
+![6.png](/images/3/1/6.png)
 
 
-s3://sehyul/gg-workshop/
+Please click 'gear icon' in the upper right, and please find 'AWS SETTINGS' and turn off 'AWS managed temporary creditionals'.
+
+{{% notice warning %}}
+Cloud9 has 'AWS managed temporary credentials' to call AWS CLI in default. However, edge devices where Greengrass V2 core software is installed do not have AWS credentials in default.
+Therefore, you turned off 'AWS managed temporary credentials' for making similar situation to actual edge devices.
+{{% /notice %}}
+
+![7.png](/images/3/1/7.png)

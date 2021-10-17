@@ -1,5 +1,5 @@
 +++
-title = "Create Cloud9 Environment"
+title = "Cloud9 Environment"
 chapter = true
 weight = 11
 +++

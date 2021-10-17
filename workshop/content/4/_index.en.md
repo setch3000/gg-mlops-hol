@@ -1,8 +1,8 @@
 +++
-title = "Set up Greengrass V2 Core software"
+title = "Deploy Greengrass component"
 chapter = true
-weight = 40
-pre = "<b>2. </b>"
+weight = 50
+pre = "<b>3. </b>"
 +++
 
 Find out how to create and organize your content quickly and intuitively.

@@ -1,50 +1,126 @@
 +++
-title = "Create Cloud9 Environment"
-chapter = true
+title = "IAM role and IoT policy for Greengrass Core device"
 weight = 31
 +++
 
-{{% notice note %}}
-In actual case, you will setup AWS IoT Fleet Provisioning on machines for administration and setup Greengrass V2 core software on edge devices.
-In this lab, you will create a separate Cloud9 instance which acts as an edge devices.
-{{% /notice %}}
+Through this lab, you will make 
++ ***GGv2WSTokenExchangeRole*** : A token exchange IAM role, which core devices use to authorize calls to AWS services.
++ ***GGv2WSTokenExchangeRoleAlias*** : An AWS IoT role alias that points to the token exchange role.
++ ***GGv2WSIoTThingPolicy***: An AWS IoT policy, which core devices use to authorize calls to the AWS IoT and AWS IoT Greengrass services.
 
-Please go to [AWS Cloud9 console](https://console.aws.amazon.com/cloud9/home/create?region=us-east-1) and create an environment.
+Device certificates and Thing registry for Greengrass core devices will be automatically through AWS IoT Fleet Provisioning.
 
-Please enter a name (e.g. ```Workshop GGv2 Core Device```).
+![0.png](/images/2/1/0.png)
+
+
+## To create a token exchange IAM role
+
+Please click [CloudFormation Link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=GGv2Workshop&templateURL=https://sehyul.s3.ap-northeast-2.amazonaws.com/gg-workshop/cfn-gg-mlops.json) to create a IAM Role with policy document that the token exchange role requires.
+
+In Step 1, please leave all settings as default and click ***Next***.
 
 ![1.png](/images/2/1/1.png)
 
-Please follow below settings and click ***Next step***.
-+ Create a new EC2 instance for environment (direct access)
-+ t3.small (2 GiB RAM + 2 vCPU)
-+ Ubuntu Server 18.04 LTS
+In Step 2, please leave Stack name as default and click ***Next***.
 
 ![2.png](/images/2/1/2.png)
 
-Please review envionment name and settiongs, and click ***Create Environment***.
+In Step 3, please leave all settings as default and click ***Next***.
 
 ![3.png](/images/2/1/3.png)
 
-You can see the screen Cloud9 is creating. This process can take several minutes.
+In Step 4, please check ***I acknowledge that AWS CloudFormation might create IAM resources.*** and click ***Create stack***.
 
 ![4.png](/images/2/1/4.png)
 
 
-Please click 'gear icon' in the upper left, and click 'Show Home in Favorites'.
-![5.png](/images/2/1/5.png)
+## Create an AWS IoT role alias that points to the token exchange role
+
+In 1~2 minutes, you can find 'Arn of token exchange IAM role', 'create-role-alias command', 'Name of the IAM Role for AWS IoT fleet provisioning'	and 'Name of the IoT policy for AWS IoT fleet provisioning' in ***Outputs*** tab in the CloudFormation stack you've made.
+
+To make an AWS IoT role alias that points to the token exchange role, please copy the command from ***CreateRoleRliasCommand*** in ***Outputs*** tab.
+
+![5.jpg](/images/2/1/5.png)
+
+In a terminal in Cloud9, please paste command to make an AWS IoT role alias that points to the token exchange role.
+The command looks simliar to the below example.
+
+``` shell
+ aws iot create-role-alias --role-alias GGv2WSTokenExchangeRoleAlias --role-arn arn:aws:iam::644973932540:role/GGv2Workshop-GGv2WSTokenExchangeRole-X65E90JE1G7O
+```
+
+The response looks similar to the following example, if the request succeeds.
+Please copy "roleAliasArn" value from the response, and paste it notepad or somewhere so that you can use it for the next section.
+
+![6.jpg](/images/2/1/6.png)
 
 
-When Cloud9 is created, the following screen is shown. If the result is printed out by entering a Linux command such as 'ls' or 'pwd' in the terminal at the bottom of the screen, it was created normally.
+## Create an AWS IoT policy for your Greengrass devices
 
-![6.png](/images/2/1/6.png)
+Please make an empty file with below command.
+
+``` shell
+touch greengrass-v2-iot-policy.json
+```
+
+Please copy and paste the below JSON into the file, and replace [ARN of IoT Role Alias] with the IoT role alias you've made in the previous section.
+Also, please don't forget to save the file.
 
 
-Please click 'gear icon' in the upper right, and please find 'AWS SETTINGS' and turn off 'AWS managed temporary creditionals'.
+``` json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Subscribe",
+        "iot:Receive",
+        "iot:Connect",
+        "greengrass:*"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:AssumeRoleWithCertificate",
+      "Resource": "[ARN of IoT Role Alias]"
+    }
+  ]
+}
 
-{{% notice warning %}}
-Cloud9 has 'AWS managed temporary credentials' to call AWS CLI in default. However, edge devices where Greengrass V2 core software is installed do not have AWS credentials in default.
-Therefore, you turned off 'AWS managed temporary credentials' for making similar situation to actual edge devices.
-{{% /notice %}}
+```
 
-![7.png](/images/2/1/7.png)
+Below is an example JSON with an ARN OF IoT Role Alias.
+
+![7.jpg](/images/2/1/7.png)
+
+
+<!-- You can check list of IoT Role Alias with below command.
+
+``` shell
+aws iot list-role-aliases
+aws iot describe-role-alias --role-alias GGV2WSTokenExchangeRoleAlias
+``` -->
+
+
+Create an AWS IoT policy from the policy document with below command. In this workshop, you will create ***GGv2WSIoTThingPolicy*** IoT Policy.
+
+``` shell
+aws iot create-policy --policy-name GGv2WSIoTThingPolicy --policy-document file://greengrass-v2-iot-policy.json
+```
+
+The response looks similar to the following example, if the request succeeds.
+![8.jpg](/images/2/1/8.png)
+
+You can also find ***GGv2WSIoTThingPolicy*** IoT Policy in AWS IoT > Secure > Policies.
+![9.jpg](/images/2/1/9.png)
+
+
+You have made 
++ A token exchange IAM role, which core devices use to authorize calls to AWS services.
++ An AWS IoT role alias that points to the token exchange role.
++ An AWS IoT policy, which core devices use to authorize calls to the AWS IoT and AWS IoT Greengrass services.

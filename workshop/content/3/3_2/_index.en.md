@@ -1,100 +1,115 @@
 +++
-title = "On device ML inference"
-weight = 41
+title = "Install with Fleet Provisioning"
+weight = 42
 +++
 
-Please create a S3 bucket with a unique name, to upload your artifiact.
-First, use the following command in the Cloud9 terminal to check the number of the AWS account currently in use.
+## Copy claim certificates
 
-``` shell
-aws sts get-caller-identity --query Account --output text
-```
-
-Create a S3 bucket in the form of a command as follows. Please replace ***[My Account Number]*** with the 12-digit account number you checked above.
-
-``` shell
-aws s3 mb s3://mybucket-[My Account Number]
-```
-
-For example, if the account number is 644973932540, you can make a bucket as follows.
-
-``` shell
-aws s3 mb s3://mybucket-644973932540
-```
-
-Please visit [IAM > Roles](https://console.aws.amazon.com/iamv2/home#/roles) console and please paste ***GGv2WSTokenExchangeRole*** in search filed to find the token exchange IAM role for Greengrass V2.
-
-You can find the role named similar to 'GGv2Workshop-GGv2WSTokenExchangeRole-X65E90JE1G7O'. Please click the role.
+Please click ***Workshop GGv2 Core Devices*** on FILE SYSTEM, and click ***File*** and ***Upload Local Files...***.
 
 ![1.png](/images/3/2/1.png)
 
-Please click ***Attach Policies***.
+Please find and upload ***claim-certs.tar.gz*** file which you've downloaded in the pervious lab.
+
 ![2.png](/images/3/2/2.png)
 
 
-Please switch to JSON tab.
-Please copy below JSON and paste, don't forget to replace ***[Greengrass Bucket]*** with the bucket name you made above. Please click ***Review Policy***.
+Please make a directoy where Greengrass V2 core software will be installed.
 
-``` json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:GetObject"
-      ],
-      "Resource": "arn:aws:s3:::[Greengrass Bucket]/*"
-    }
-  ]
-}
+``` shell
+sudo mkdir -p /greengrass/v2
+sudo chmod 755 /greengrass
+```
+
+Please extract claim certificates and private key.
+
+``` shell
+sudo tar -xvf claim-certs.tar.gz -C /greengrass/v2
+```
+
+
+Please download the Amazon root certificate authority (CA) certificate. AWS IoT certificates are associated with Amazon's root CA certificate by default.
+
+``` shell
+sudo curl -o /greengrass/v2/AmazonRootCA1.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem
+```
+
+Pleae check if all files are located correctly.
+
+``` shell
+sudo ls /greengrass/v2 -al
+sudo ls /greengrass/v2/claim-certs -al
 ```
 
 ![3.png](/images/3/2/3.png)
 
-Please paste ```GGv2WSComponentArtifactPolicy``` in Name field and click ***Create policy***.
+
+## Download the AWS IoT Greengrass Core software
+
+On your Cloud9 which acts as an edge device, please download the AWS IoT Greengrass Core software to a file named greengrass-nucleus-latest.zip.
+
+``` shell
+curl -s https://d2s8p88vqu9w66.cloudfront.net/releases/greengrass-nucleus-latest.zip > greengrass-nucleus-latest.zip
+```
+
+Please Unzip the AWS IoT Greengrass Core software to a folder.
+
+``` shell
+unzip greengrass-nucleus-latest.zip -d GreengrassInstaller && rm greengrass-nucleus-latest.zip
+```
+
+Please run the following command to see the version of the AWS IoT Greengrass Core software.
+
+``` shell
+java -jar ./GreengrassInstaller/lib/Greengrass.jar --version
+```
 
 ![4.png](/images/3/2/4.png)
+
+
+## Download the AWS IoT fleet provisioning plugin
+
+``` shell
+curl -s https://d2s8p88vqu9w66.cloudfront.net/releases/aws-greengrass-FleetProvisioningByClaim/fleetprovisioningbyclaim-latest.jar > GreengrassInstaller/aws.greengrass.FleetProvisioningByClaim.jar
+```
+
+## To install the AWS IoT Greengrass Core software
+
+Please click ***GreengrassInstaller*** directory on FILE SYSTEM, and click ***File*** and ***Upload Local Files...***.
 
 ![5.png](/images/3/2/5.png)
 
 
-<!-- ``` shell
-aws iam create-policy \
-  --policy-name GGv2WSComponentArtifactPolicy \
-  --policy-document file://component-artifact-policy.json
-```
+Please ensure the config file is correclty located with below command.
 
 ``` shell
-aws iam attach-role-policy \
-  --role-name GGv2WSTokenExchangeRole \
-  --policy-arn arn:aws:iam::123456789012:policy/GGv2WSComponentArtifactPolicy
-``` -->
-
-
-``` shell
-git clone https://github.com/daekeun-ml/ggv2-cv-mlops-workshop.git
-cd 1.byom-imgclassification-from-scratch/
+cat GreengrassInstaller/config.yaml 
 ```
 
+Please run the Greengrass V2 installer.
+
 ``` shell
-aws s3 mb s3://mybucket-644973932540/ggv2/artifacts
-sudo chmod +x init_ubuntu.sh
-./init_ubuntu.sh 
+sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE \
+  -jar ./GreengrassInstaller/lib/Greengrass.jar \
+  --trusted-plugin ./GreengrassInstaller/aws.greengrass.FleetProvisioningByClaim.jar \
+  --init-config ./GreengrassInstaller/config.yaml \
+  --component-default-user ggc_user:ggc_group \
+  --setup-system-service true
 ```
 
+You can verify the installation by viewing the files in the root folder.
 
-# References
+``` shell
+ls /greengrass/v2
+```
 
-sudo /greengrass/v2/bin/greengrass-cli component restart \
-  --names "com.example.HelloWorld"
-sudo /greengrass/v2/bin/greengrass-cli component list
+Please open new terminal in Cloud9 and run below command to check Greengrass core software log.
 
-sudo /greengrass/v2/bin/greengrass-cli deployment create --remove="com.example.HelloMqtt"
+``` shell
+sudo tail -f /greengrass/v2/logs/greengrass.log
+```
 
-aws s3 cp \
-  ~/GGv2Dev/artifacts/com.example.HelloWorld/1.0.0/hello_world.py \
-  s3://sehyul/gg-workshop/artifacts/com.example.HelloWorld/1.0.0/hello_world.py
+![6.png](/images/3/2/6.png)
 
 
-Artifact가 업로드되어 있는 S3의 리전이 gg와 같아야 함. why?
+![7.png](/images/3/2/7.png)
