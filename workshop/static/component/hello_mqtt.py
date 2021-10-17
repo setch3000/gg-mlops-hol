@@ -12,10 +12,10 @@ if __name__ == '__main__':
     while True:
         telemetry_data = {
             "timestamp": int(round(time.time() * 1000)),
-            "battery_level": random.randrange(15, 101),
+            "battery_level": random.randrange(98, 101),
             "location": {
-                "longitude": random.uniform(101.0, 120.0),
-                "latitude": random.uniform(30.0, 40.0),
+                "longitude": round(random.uniform(101.0, 120.0),2),
+                "latitude": round(random.uniform(30.0, 40.0),2),
             },
         }
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
             payload=json.dumps(telemetry_data).encode(),
         ))
         try:
-            result = op.get_response().result(timeout=5.0)
+            result = op.get_response().result(timeout=1.0)
             print("successfully published message:", result)
         except Exception as e:
             print("failed to publish message:", e)
