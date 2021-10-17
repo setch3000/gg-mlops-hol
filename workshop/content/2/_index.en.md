@@ -2,7 +2,7 @@
 title = "Set up Fleet Provisioning"
 chapter = true
 weight = 30
-pre = "<b>1. </b>"
+pre = "<b>2. </b>"
 +++
 
 These resources enable devices to register themselves with AWS IoT and operate as Greengrass core devices.
