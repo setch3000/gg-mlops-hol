@@ -35,7 +35,7 @@ git clone https://github.com/daekeun-ml/ggv2-cv-mlops-workshop.git
 Please edit ***config.json*** under ***1.byom-imgclassification-from-scratch*** directory.
 Please replace "Account" with the 12-digit account number you checked above, and replace "S3Bucket" with the bucket name as ***s3://mybucket-[My Account Number]*** format as below screenshot.
 
-![1.png](/images/1/1.png)
+![1.png](/images/1/1/1.png)
 
 Please run ***init_ubuntu.sh*** as below.
 
@@ -54,11 +54,11 @@ sudo chmod +x init_ubuntu.sh
 
 Please input ```Y``` during the script is executed.
 
-![2.png](/images/1/2.png)
+![2.png](/images/1/1/2.png)
 
 You will find similar response, if the create-component-version request in the script succeeds.
 
-![3.png](/images/1/3.png)
+![3.png](/images/1/1/3.png)
 
 Please see each component and its latest version defined in your AWS account in the current Region. 
 
@@ -68,4 +68,4 @@ aws greengrassv2 list-components
 
 You will find similar response, if the componet was successfully registered.
 
-![4.png](/images/1/4.png)
+![4.png](/images/1/1/4.png)
