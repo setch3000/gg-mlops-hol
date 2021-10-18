@@ -15,7 +15,7 @@ Please run below command to check if the Greengrass CLI component (aws.greengras
 
 You will find below error, since the Greengrass CLI component (aws.greengrass.Cli) is NOT automatically installed.
 
-![1.png](/images/3/3/1.png)
+![picture1.png](/images/3/3/picture1.png)
 
 Let's start to deploy the Greengrass CLI component (aws.greengrass.Cli) manually in this lab.
 
