@@ -9,7 +9,7 @@ Through this lab, you will make
 
 ## Create a Thing Group
 
-{{% notice warn %}}
+{{% notice warning %}}
 The thing group must exist in your AWS account, before Fleet Provisioning
 {{% /notice %}}
 
