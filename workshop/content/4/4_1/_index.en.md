@@ -21,10 +21,14 @@ sudo /greengrass/v2/bin/greengrass-cli component list
 
 ## Creating a Greengrass componet
 
+Please create a directory and empty file for a recipe file.
+
 ``` shell
 mkdir -p ~/GGv2Dev/recipes
 touch ~/GGv2Dev/recipes/com.example.HelloMqtt-1.0.0.json
 ```
+
+Please use below json for recipe.
 
 ``` json
 {
@@ -66,13 +70,14 @@ touch ~/GGv2Dev/recipes/com.example.HelloMqtt-1.0.0.json
 
 ```
 
-
+Please create a directory and empty file for a artifact file.
 
 ``` shell
 mkdir -p ~/GGv2Dev/artifacts/com.example.HelloMqtt/1.0.0
 touch ~/GGv2Dev/artifacts/com.example.HelloMqtt/1.0.0/hello_mqtt.py
 ```
 
+Please use below source code for artifact.
 
 ```python
 import json
@@ -111,6 +116,7 @@ if __name__ == '__main__':
         time.sleep(5)
 ```
 
+Please create a local deployment.
 
 ``` shell
 sudo /greengrass/v2/bin/greengrass-cli deployment create \
@@ -128,31 +134,26 @@ Please open New terminal and check component log.
 sudo tail -f /greengrass/v2//logs/com.example.HelloMqtt.log
 ```
 
-
+Please go to [AWS IoT > MQTT test client](https://console.aws.amazon.com/iot/home?#/test) and subscribe ```ggv2/GGv2WSMyGreengrassCore/#```.
 
 ![2.png](/images/4/1/2.png)
 
+## References
 
+To remove local Greengrass component.
 
 ``` shell
 sudo /greengrass/v2/bin/greengrass-cli deployment create --remove="com.example.HelloMqtt"
 ```
 
-# References
+To restart local Greengrass component.
 
-sudo /greengrass/v2/bin/greengrass-cli component restart \
-  --names "com.example.HelloWorld"
+``` shell
+sudo /greengrass/v2/bin/greengrass-cli component restart --names "com.example.HelloWorld"
+```
+
+To list installed Greengrass component.
+
+``` shell
 sudo /greengrass/v2/bin/greengrass-cli component list
-
-sudo /greengrass/v2/bin/greengrass-cli deployment create --remove="com.example.HelloMqtt"
-
-aws s3 cp \
-  ~/GGv2Dev/artifacts/com.example.HelloWorld/1.0.0/hello_world.py \
-  s3://sehyul/gg-workshop/artifacts/com.example.HelloWorld/1.0.0/hello_world.py
-
-
-
-  s3://DOC-EXAMPLE-BUCKET/artifacts/com.example.HelloWorld/1.0.0/hello_world.py
-
-
-s3://sehyul/gg-workshop/
+```
