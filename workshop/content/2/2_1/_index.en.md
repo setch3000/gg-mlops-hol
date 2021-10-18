@@ -116,7 +116,7 @@ aws iot create-policy --policy-name GGv2WSIoTThingPolicy --policy-document file:
 The response looks similar to the following example, if the request succeeds.
 ![8.jpg](/images/2/1/8.png)
 
-You can also find ***GGv2WSIoTThingPolicy*** IoT Policy in AWS IoT > Secure > Policies.
+You can also find ***GGv2WSIoTThingPolicy*** IoT Policy in [AWS IoT > Secure > Policies](https://us-east-1.console.aws.amazon.com/iot/home?#/policyhub).
 ![9.jpg](/images/2/1/9.png)
 
 
