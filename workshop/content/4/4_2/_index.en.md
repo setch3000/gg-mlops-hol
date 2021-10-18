@@ -5,7 +5,7 @@ weight = 52
 
 
 
-Please visit [IAM > Roles](https://console.aws.amazon.com/iamv2/home#/roles) console and please paste ***GGv2WSTokenExchangeRole*** in search filed to find the token exchange IAM role for Greengrass V2.
+Please visit [IAM > Roles](https://console.aws.amazon.com/iamv2/home#/roles) console and please paste ```GGv2WSTokenExchangeRole``` in search filed to find the token exchange IAM role for Greengrass V2.
 
 You can find the role named similar to 'GGv2Workshop-GGv2WSTokenExchangeRole-X65E90JE1G7O'. Please click the role.
 
@@ -16,7 +16,7 @@ Please click ***Attach Policies***.
 
 
 Please switch to JSON tab.
-Please copy below JSON and paste, don't forget to replace ***[Greengrass Bucket]*** with the bucket name you made above. Please click ***Review Policy***.
+Please copy below JSON and paste, don't forget to replace ***[Greengrass Bucket]*** with the bucket name you made in [lab 1](/en/1/1_1.html). Please click ***Review Policy***.
 
 ``` json
 {
@@ -55,19 +55,6 @@ aws iam attach-role-policy \
 ``` -->
 
 
+## Deploy ImgClassification component
 
-
-# References
-
-sudo /greengrass/v2/bin/greengrass-cli component restart \
-  --names "com.example.HelloWorld"
-sudo /greengrass/v2/bin/greengrass-cli component list
-
-sudo /greengrass/v2/bin/greengrass-cli deployment create --remove="com.example.HelloMqtt"
-
-aws s3 cp \
-  ~/GGv2Dev/artifacts/com.example.HelloWorld/1.0.0/hello_world.py \
-  s3://sehyul/gg-workshop/artifacts/com.example.HelloWorld/1.0.0/hello_world.py
-
-
-Artifact가 업로드되어 있는 S3의 리전이 gg와 같아야 함. why?
+Please go to [AWS IoT > Greengrass > Components](https://console.aws.amazon.com/iot/home?#/greengrass/v2/components), and Please click ***com.example.ImgClassification*** component you made in [lab 1](/en/1/1_1.html).
