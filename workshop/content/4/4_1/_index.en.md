@@ -122,7 +122,7 @@ sudo /greengrass/v2/bin/greengrass-cli deployment create \
 ![1.png](/images/4/1/1.png)
 
 
-Open New terminal
+Please open New terminal and check component log.
 
 ``` shell
 sudo tail -f /greengrass/v2//logs/com.example.HelloMqtt.log
