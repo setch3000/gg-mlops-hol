@@ -105,7 +105,7 @@ Please make a empty file for AWS IoT policy document that Greengrass core device
 touch greengrass-provisioning-claim-iot-policy.json
 ```
 
-Please coyp belo JSON file and paste it into the empty file. Please replace [account-id] with your AWS account id, which you've checked above.
+Please coyp belo JSON file and paste it into the empty file. Please replace [Account-ID] with your AWS account id, which you've checked above.
 
 ``` json
 {
@@ -123,16 +123,16 @@ Please coyp belo JSON file and paste it into the empty file. Please replace [acc
         "iot:Receive"
       ],
       "Resource": [
-        "arn:aws:iot:us-east-1:[account-id]:topic/$aws/certificates/create/*",
-        "arn:aws:iot:us-east-1:[account-id]:topic/$aws/provisioning-templates/GGv2WSFleetProvisioningTemplate/provision/*"
+        "arn:aws:iot:us-east-1:[Account-ID]:topic/$aws/certificates/create/*",
+        "arn:aws:iot:us-east-1:[Account-ID]:topic/$aws/provisioning-templates/GGv2WSFleetProvisioningTemplate/provision/*"
       ]
     },
     {
       "Effect": "Allow",
       "Action": "iot:Subscribe",
       "Resource": [
-        "arn:aws:iot:us-east-1:[account-id]:topicfilter/$aws/certificates/create/*",
-        "arn:aws:iot:us-east-1:[account-id]:topicfilter/$aws/provisioning-templates/GGv2WSFleetProvisioningTemplate/provision/*"
+        "arn:aws:iot:us-east-1:[Account-ID]:topicfilter/$aws/certificates/create/*",
+        "arn:aws:iot:us-east-1:[Account-ID]:topicfilter/$aws/provisioning-templates/GGv2WSFleetProvisioningTemplate/provision/*"
       ]
     }
   ]
