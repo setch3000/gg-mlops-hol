@@ -112,6 +112,6 @@ sudo tail -f /greengrass/v2/logs/greengrass.log
 ![6.png](/images/3/2/6.png)
 
 
-You can find ***GGv2WSMyGreengrassCore*** is created in [AWS IoT > Manage > Things](https://console.aws.amazon.com/iot/home?#/thinghub) menu, if every step succeeds.
+You can find ***GGv2WSMyGreengrassCore*** is created in [AWS IoT > Greengrass > Core devices](https://console.aws.amazon.com/iot/home?#/greengrass/v2/cores) menu, if every step succeeds.
 
 ![7.png](/images/3/2/7.png)
