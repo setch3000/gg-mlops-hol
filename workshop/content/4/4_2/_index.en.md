@@ -114,7 +114,7 @@ sudo tail -f /greengrass/v2//logs/com.example.ImgClassification.log
 ![16.png](/images/4/2/16.png)
 
 
-Please go to [AWS IoT > MQTT test client]() and subscribe ```ml/example/imgclassification```, then you can see the inference result is coming from the Greengrass core device over MQTT.
+Please go to [AWS IoT > MQTT test client](https://console.aws.amazon.com/iot/home?#/test) and subscribe ```ml/example/imgclassification```, then you can see the inference result is coming from the Greengrass core device over MQTT.
 
 ![17.png](/images/4/2/17.png)
 
