@@ -103,7 +103,7 @@ In [AWS IoT > Greengrass > Core devices > GGv2WSMyGreengrassCore](https://consol
 
 In a few minutes, you can see ***Completed*** as below.
 
-![15.png](/images/4/2/14.png)
+![15.png](/images/4/2/15.png)
 
 Please open a new termail in Cloud9 IDE and use below command to see the log of ***com.example.ImgClassification*** component.
 
