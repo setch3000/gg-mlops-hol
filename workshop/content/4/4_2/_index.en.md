@@ -96,3 +96,26 @@ Please leave all settings as default in Step 4.
 Please click ***Deploy*** in Step 5.
 
 ![13.png](/images/4/2/13.png)
+
+In [AWS IoT > Greengrass > Core devices > GGv2WSMyGreengrassCore](https://console.aws.amazon.com/iot/home?#/greengrass/v2/cores/details/GGv2WSMyGreengrassCore) console, please click ***Deployments*** tab and check the ***Status on this device***.
+
+![14.png](/images/4/2/14.png)
+
+In a few minutes, you can see ***Completed*** as below.
+
+![15.png](/images/4/2/14.png)
+
+Please open a new termail in Cloud9 IDE and use below command to see the log of ***com.example.ImgClassification*** component.
+
+``` shell
+sudo tail -f /greengrass/v2//logs/com.example.ImgClassification.log
+```
+
+![16.png](/images/4/2/16.png)
+
+
+Please go to [AWS IoT > MQTT test client]() and subscribe ```ml/example/imgclassification```, then you can see the inference result is coming from the Greengrass core device over MQTT.
+
+![17.png](/images/4/2/17.png)
+
+You have completed this lab. Thank you.
