@@ -11,8 +11,9 @@ Please enter a name (e.g. ```IoTML```).
 ![1.png](/images/0/1.png)
 
 Please follow below settings and click ***Next step***.
+
 + Create a new EC2 instance for environment (direct access)
-+ t3.small (2 GiB RAM + 2 vCPU)
++ t2.micro (1 GiB RAM + 1 vCPU)
 + Ubuntu Server 18.04 LTS
 
 ![2.png](/images/0/2.png)

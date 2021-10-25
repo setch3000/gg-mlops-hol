@@ -16,6 +16,7 @@ Please enter a name (e.g. ```Workshop GGv2 Core Device```).
 ![1.png](/images/3/1/1.png)
 
 Please follow below settings and click ***Next step***.
+
 + Create a new EC2 instance for environment (direct access)
 + t3.small (2 GiB RAM + 2 vCPU)
 + Ubuntu Server 18.04 LTS
