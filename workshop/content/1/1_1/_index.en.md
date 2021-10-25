@@ -69,3 +69,8 @@ aws greengrassv2 list-components
 You will find similar response, if the componet was successfully registered.
 
 ![4.png](/images/1/1/4.png)
+
+
+You will be able to see your component on [AWS IoT > Greengrass > Components](https://console.aws.amazon.com/iot/home?#/greengrass/v2/components), when you complete this lab.
+
+![5.png](/images/1/1/5.png)
