@@ -18,6 +18,12 @@ Please click ***Attach Policies***.
 Please switch to JSON tab.
 Please copy below JSON and paste, don't forget to replace ***[Greengrass Bucket]*** with the bucket name you made in [lab 1](/en/1/1_1.html). Please click ***Review Policy***.
 
+
+{{% notice note %}}
+You have made the bucket name as 'mybucket-[My Account Number]'. e.g. mybucket-644973932540
+{{% /notice %}}
+
+
 ``` json
 {
   "Version": "2012-10-17",
